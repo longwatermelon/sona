@@ -1,4 +1,4 @@
 #!/bin/sh
 ./build
-qemu-system-i386 -cdrom eos.iso
+qemu-system-i386 -cdrom sona.iso
 

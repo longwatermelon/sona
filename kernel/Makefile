@@ -48,9 +48,9 @@ $(LDFLAGS)
 .PHONY: all clean install install-headers install-kernel
 .SUFFIXES: .o .c .s
 
-all: eos.kernel
+all: sona.kernel
 
-eos.kernel: $(OBJS) $(ARCHDIR)/linker.ld
+sona.kernel: $(OBJS) $(ARCHDIR)/linker.ld
 	$(CC) -T $(ARCHDIR)/linker.ld -o $@ $(CFLAGS) $(LINK_LIST)
 	grub-file --is-x86-multiboot $@
 
@@ -64,7 +64,7 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 	$(CC) -MD -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
 clean:
-	rm -f eos.kernel
+	rm -f sona.kernel
 	rm -f $(OBJS)  *.o */*.o */*/*.o
 	rm -f $(OBJS:.o=.d) *.d */*.d */*/*.d
 
@@ -74,9 +74,9 @@ install-headers:
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
 	cp -R --preserve=timestamps kernel/include/. $(DESTDIR)$(INCLUDEDIR)/.
 
-install-libs: eos.kernel
+install-libs: sona.kernel
 	mkdir -p $(BOOTDIR)
-	cp eos.kernel $(BOOTDIR)
+	cp sona.kernel $(BOOTDIR)
 
 -include $(OBJS:.o=.d)
 

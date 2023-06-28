@@ -4,11 +4,11 @@ cd libc && DESTDIR="../sysroot" make install && cd ..
 cd kernel && DESTDIR="../sysroot" make install && cd ..
 
 mkdir -p iso/boot/grub
-cp sysroot/boot/eos.kernel iso/boot/eos.kernel
+cp sysroot/boot/sona.kernel iso/boot/sona.kernel
 cat > iso/boot/grub/grub.cfg << EOF
-menuentry "eos" {
-	multiboot /boot/eos.kernel
+menuentry "sona" {
+	multiboot /boot/sona.kernel
 }
 EOF
-grub-mkrescue -o eos.iso iso
+grub-mkrescue -o sona.iso iso
 

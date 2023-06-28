@@ -1,2 +1,2 @@
-# eos
-E operating system
+# sona
+Sona operating system
