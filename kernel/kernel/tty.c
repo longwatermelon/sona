@@ -23,9 +23,10 @@ void term_init()
 {
     g_term_row = 0;
     g_term_col = 0;
-    g_term_color = vga_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLUE);
+    g_term_color = vga_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
     g_term_buffer = VGA_MEMORY;
 
+    // Fill screen with empty space
     for (size_t row = 0; row < VGA_HEIGHT; ++row)
     {
         for (size_t col = 0; col < VGA_WIDTH; ++col)
@@ -37,6 +38,7 @@ void term_write(const char *data)
 {
     for (size_t i = 0; i < strlen(data); ++i)
     {
+        // Write to screen, or handle newline
         if (data[i] == '\n')
         {
             ++g_term_row;
@@ -47,6 +49,7 @@ void term_write(const char *data)
             term_set(data[i], g_term_row, g_term_col++, g_term_color);
         }
 
+        // Scroll if needed
         if (g_term_row >= VGA_HEIGHT)
         {
             term_scroll();

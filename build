@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 cd libc && DESTDIR="../sysroot" make install && cd ..
 cd kernel && DESTDIR="../sysroot" make install && cd ..
 
