@@ -1,3 +1,6 @@
 #!/bin/sh
 cd kernel && make clean && cd ..
-cd libc && make clean
+cd libc && make clean && cd ..
+rm -rf sysroot
+rm -rf iso
+rm eos.iso

@@ -6,7 +6,7 @@ LDFLAGS?=-L../libc
 
 # Required
 CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
-CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -Iinclude -I../libc/include
+CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -Ikernel/include -I../libc/include
 LIBK_CFLAGS:=$(CFLAGS)
 LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_kernel
 LDFLAGS:=$(LDFLAGS) -nostdlib -lk -lgcc
@@ -15,7 +15,7 @@ ARCHDIR=arch/i386
 DESTDIR?=
 PREFIX?=/usr/local
 EXEC_PREFIX?=$(PREFIX)
-INCLUDEDIR?=$(PREFIX)/include
+INCLUDEDIR?=$(PREFIX)kernel/include
 BOOTDIR?=$(DESTDIR)/boot
 
 # Include arch specific flags
@@ -71,7 +71,7 @@ install: install-headers install-libs
 
 install-headers:
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
-	cp -R --preserve=timestamps include/. $(DESTDIR)$(INCLUDEDIR)/.
+	cp -R --preserve=timestamps kernel/include/. $(DESTDIR)$(INCLUDEDIR)/.
 
 install-libs: eos.kernel
 	mkdir -p $(BOOTDIR)
