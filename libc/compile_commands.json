@@ -1,0 +1,128 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-std=gnu11",
+      "-O2",
+      "-g",
+      "-ffreestanding",
+      "-Wall",
+      "-Wextra",
+      "-D__is_libc",
+      "-Iinclude",
+      "-D__is_libk",
+      "-o",
+      "stdio/putchar.libk.o",
+      "stdio/putchar.c"
+    ],
+    "directory": "/home/long/workspace/eos/libc",
+    "file": "/home/long/workspace/eos/libc/stdio/putchar.c",
+    "output": "/home/long/workspace/eos/libc/stdio/putchar.libk.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-std=gnu11",
+      "-O2",
+      "-g",
+      "-ffreestanding",
+      "-Wall",
+      "-Wextra",
+      "-D__is_libc",
+      "-Iinclude",
+      "-D__is_libk",
+      "-o",
+      "string/str.libk.o",
+      "string/str.c"
+    ],
+    "directory": "/home/long/workspace/eos/libc",
+    "file": "/home/long/workspace/eos/libc/string/str.c",
+    "output": "/home/long/workspace/eos/libc/string/str.libk.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-std=gnu11",
+      "-O2",
+      "-g",
+      "-ffreestanding",
+      "-Wall",
+      "-Wextra",
+      "-D__is_libc",
+      "-Iinclude",
+      "-D__is_libk",
+      "-o",
+      "stdio/printf.libk.o",
+      "stdio/printf.c"
+    ],
+    "directory": "/home/long/workspace/eos/libc",
+    "file": "/home/long/workspace/eos/libc/stdio/printf.c",
+    "output": "/home/long/workspace/eos/libc/stdio/printf.libk.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-std=gnu11",
+      "-O2",
+      "-g",
+      "-ffreestanding",
+      "-Wall",
+      "-Wextra",
+      "-D__is_libc",
+      "-Iinclude",
+      "-D__is_libk",
+      "-o",
+      "stdio/puts.libk.o",
+      "stdio/puts.c"
+    ],
+    "directory": "/home/long/workspace/eos/libc",
+    "file": "/home/long/workspace/eos/libc/stdio/puts.c",
+    "output": "/home/long/workspace/eos/libc/stdio/puts.libk.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-std=gnu11",
+      "-O2",
+      "-g",
+      "-ffreestanding",
+      "-Wall",
+      "-Wextra",
+      "-D__is_libc",
+      "-Iinclude",
+      "-D__is_libk",
+      "-o",
+      "stdlib/abort.libk.o",
+      "stdlib/abort.c"
+    ],
+    "directory": "/home/long/workspace/eos/libc",
+    "file": "/home/long/workspace/eos/libc/stdlib/abort.c",
+    "output": "/home/long/workspace/eos/libc/stdlib/abort.libk.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "-std=gnu11",
+      "-O2",
+      "-g",
+      "-ffreestanding",
+      "-Wall",
+      "-Wextra",
+      "-D__is_libc",
+      "-Iinclude",
+      "-D__is_libk",
+      "-o",
+      "string/mem.libk.o",
+      "string/mem.c"
+    ],
+    "directory": "/home/long/workspace/eos/libc",
+    "file": "/home/long/workspace/eos/libc/string/mem.c",
+    "output": "/home/long/workspace/eos/libc/string/mem.libk.o"
+  }
+]
