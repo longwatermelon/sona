@@ -12,8 +12,7 @@ LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_libk
 
 ARCHDIR=arch/i386
 DESTDIR?=
-PREFIX?=/usr
-EXEC_PREFIX?=$(PREFIX)
+PREFIX?=usr
 INCLUDEDIR?=$(PREFIX)/include
 LIBDIR?=$(PREFIX)/lib
 
@@ -73,18 +72,18 @@ libk.a: $(LIBK_OBJS)
 
 clean:
 	rm -f *.a
-	rm -f $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o
-	rm -f $(OBJS:.o=.d) $(LIBK_OBJS:.o=.d) *.d */*.d */*/*.d
+	rm -f $(OBJS) $(LIBK_OBJS)
+	rm -f $(OBJS:.o=.d) $(LIBK_OBJS:.o=.d)
 
 install: install-headers install-libs
 
 install-headers:
-	mkdir -p $(DESTDIR)$(INCLUDEDIR)
-	cp -R --preserve=timestamps include/. $(DESTDIR)$(INCLUDEDIR)/.
+	mkdir -p $(DESTDIR)/$(INCLUDEDIR)
+	cp -R --preserve=timestamps include/. $(DESTDIR)/$(INCLUDEDIR)/.
 
 install-libs: $(BINS)
-	mkdir -p $(DESTDIR)$(LIBDIR)
-	cp $(BINS) $(DESTDIR)$(LIBDIR)
+	mkdir -p $(DESTDIR)/$(LIBDIR)
+	cp $(BINS) $(DESTDIR)/$(LIBDIR)
 
 -include $(OBJS:.o=.d)
 -include $(LIBK_OBJS:.o=.d)

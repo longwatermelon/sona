@@ -13,10 +13,9 @@ LDFLAGS:=$(LDFLAGS) -nostdlib -lk -lgcc
 
 ARCHDIR=arch/i386
 DESTDIR?=
-PREFIX?=/usr
-EXEC_PREFIX?=$(PREFIX)
+PREFIX?=usr
 INCLUDEDIR?=$(PREFIX)/include
-BOOTDIR?=$(DESTDIR)/boot
+BOOTDIR?=boot
 
 # Include arch specific flags
 include $(ARCHDIR)/make.config
@@ -65,18 +64,18 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 
 clean:
 	rm -f sona.kernel
-	rm -f $(OBJS)  *.o */*.o */*/*.o
-	rm -f $(OBJS:.o=.d) *.d */*.d */*/*.d
+	rm -f $(OBJS)
+	rm -f $(OBJS:.o=.d)
 
 install: install-headers install-libs
 
 install-headers:
-	mkdir -p $(DESTDIR)$(INCLUDEDIR)
-	cp -R --preserve=timestamps kernel/include/. $(DESTDIR)$(INCLUDEDIR)/.
+	mkdir -p $(DESTDIR)/$(INCLUDEDIR)
+	cp -R --preserve=timestamps kernel/include/. $(DESTDIR)/$(INCLUDEDIR)/.
 
 install-libs: sona.kernel
-	mkdir -p $(BOOTDIR)
-	cp sona.kernel $(BOOTDIR)
+	mkdir -p $(DESTDIR)/$(BOOTDIR)
+	cp sona.kernel $(DESTDIR)/$(BOOTDIR)
 
 -include $(OBJS:.o=.d)
 
