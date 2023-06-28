@@ -5,14 +5,14 @@ CPPFLAGS?=
 LDFLAGS?=
 
 # Required
-CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra -fstack-protector
+CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
 CPPFLAGS:=$(CPPFLAGS) -D__is_libc -Iinclude -I../kernel/kernel/include
 LIBK_CFLAGS:=$(CFLAGS)
 LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_libk
 
 ARCHDIR=arch/i386
 DESTDIR?=
-PREFIX?=/usr/local
+PREFIX?=/usr
 EXEC_PREFIX?=$(PREFIX)
 INCLUDEDIR?=$(PREFIX)/include
 LIBDIR?=$(PREFIX)/lib

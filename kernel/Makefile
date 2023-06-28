@@ -5,7 +5,7 @@ CPPFLAGS?=
 LDFLAGS?=-L../libc
 
 # Required
-CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra -fstack-protector
+CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
 CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -Ikernel/include -I../libc/include
 LIBK_CFLAGS:=$(CFLAGS)
 LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_kernel
@@ -13,9 +13,9 @@ LDFLAGS:=$(LDFLAGS) -nostdlib -lk -lgcc
 
 ARCHDIR=arch/i386
 DESTDIR?=
-PREFIX?=/usr/local
+PREFIX?=/usr
 EXEC_PREFIX?=$(PREFIX)
-INCLUDEDIR?=$(PREFIX)kernel/include
+INCLUDEDIR?=$(PREFIX)/include
 BOOTDIR?=$(DESTDIR)/boot
 
 # Include arch specific flags
