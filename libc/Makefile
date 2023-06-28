@@ -28,12 +28,12 @@ LIBK_CPPFLAGS:=$(LIBK_CPPFLAGS) $(KERNEL_ARCH_CPPFLAGS)
 # Freestanding .o files
 FREEOBJS=\
 $(ARCH_FREEOBJS) \
-stdio/printf.o \
-stdio/puts.o \
-stdio/putchar.o \
-stdlib/abort.o \
-string/mem.o \
-string/str.o
+src/printf.o \
+src/puts.o \
+src/putchar.o \
+src/abort.o \
+src/mem.o \
+src/str.o
 
 # Hosted .o files
 HOSTEDOBJS=$(ARCH_HOSTEDOBJS)
