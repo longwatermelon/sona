@@ -44,3 +44,4 @@ _start:
     jmp 1b # If hlt is interrupted (non-maskable), jump back to hlt
 
 .size _start, . - _start
+
