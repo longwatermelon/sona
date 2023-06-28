@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
-cd libc && DESTDIR="../sysroot" make install && cd ..
-cd kernel && DESTDIR="../sysroot" make install && cd ..
+cd libc && DESTDIR="../sysroot" bear -- make install && cd ..
+cd kernel && DESTDIR="../sysroot" bear -- make install && cd ..
 
 mkdir -p iso/boot/grub
 cp sysroot/boot/sona.kernel iso/boot/sona.kernel

@@ -5,7 +5,7 @@ CPPFLAGS?=
 LDFLAGS?=-L../libc
 
 # Required
-CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
+CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra -fstack-protector
 CPPFLAGS:=$(CPPFLAGS) -D__is_kernel -Ikernel/include -I../libc/include
 LIBK_CFLAGS:=$(CFLAGS)
 LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_kernel
