@@ -32,11 +32,20 @@ void term_init() {
 
 void term_write(const char *data) {
     for (size_t i = 0; i < strlen(data); ++i) {
-        term_set(data[i], g_term_row, g_term_col++, g_term_color);
+        if (data[i] == '\n') {
+            ++g_term_row;
+            g_term_col = 0;
+        } else {
+            term_set(data[i], g_term_row, g_term_col++, g_term_color);
+        }
     }
 }
 
 void term_set(unsigned char c, size_t row, size_t col, uint8_t color) {
     g_term_buffer[row * VGA_WIDTH + col] = vga_entry(c, color);
+}
+
+void term_color(uint8_t color) {
+    g_term_color = color;
 }
 
