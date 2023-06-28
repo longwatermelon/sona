@@ -1,2 +1,2 @@
 # sona
-Sona operating system
+Sona ("an os" backwards) operating system
