@@ -1,4 +1,4 @@
 #!/bin/sh
-./build.sh
+./build
 qemu-system-i386 -cdrom eos.iso
 
