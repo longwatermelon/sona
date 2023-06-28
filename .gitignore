@@ -6,3 +6,4 @@ compile_commands.json
 iso/
 sysroot/
 *.iso
+*.kernel

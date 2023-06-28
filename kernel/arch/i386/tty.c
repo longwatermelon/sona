@@ -32,7 +32,7 @@ void term_init() {
 
 void term_write(const char *data) {
     for (size_t i = 0; i < strlen(data); ++i) {
-        term_set(data[i], g_term_row, ++g_term_col, g_term_color);
+        term_set(data[i], g_term_row, g_term_col++, g_term_color);
     }
 }
 
