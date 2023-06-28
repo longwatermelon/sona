@@ -17,35 +17,71 @@ static uint8_t g_term_color;
 static uint16_t* g_term_buffer;
 
 void term_set(unsigned char c, size_t row, size_t col, uint8_t color);
+void term_scroll();
 
-void term_init() {
+void term_init()
+{
     g_term_row = 0;
     g_term_col = 0;
-    g_term_color = vga_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
+    g_term_color = vga_color(VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLUE);
     g_term_buffer = VGA_MEMORY;
-    for (size_t row = 0; row < VGA_HEIGHT; ++row) {
-        for (size_t col = 0; col < VGA_WIDTH; ++col) {
+
+    for (size_t row = 0; row < VGA_HEIGHT; ++row)
+    {
+        for (size_t col = 0; col < VGA_WIDTH; ++col)
             term_set(' ', row, col, g_term_color);
-        }
     }
 }
 
-void term_write(const char *data) {
-    for (size_t i = 0; i < strlen(data); ++i) {
-        if (data[i] == '\n') {
+void term_write(const char *data)
+{
+    for (size_t i = 0; i < strlen(data); ++i)
+    {
+        if (data[i] == '\n')
+        {
             ++g_term_row;
             g_term_col = 0;
-        } else {
+        }
+        else
+        {
             term_set(data[i], g_term_row, g_term_col++, g_term_color);
+        }
+
+        if (g_term_row >= VGA_HEIGHT)
+        {
+            term_scroll();
+            g_term_row = VGA_HEIGHT - 1;
+            g_term_col = 0;
         }
     }
 }
 
-void term_set(unsigned char c, size_t row, size_t col, uint8_t color) {
+void term_scroll()
+{
+    // Take (row + 1)'s contents and put it in row
+    for (size_t row = 0; row < VGA_HEIGHT; ++row)
+    {
+        for (size_t col = 0; col < VGA_WIDTH; ++col)
+        {
+            // Move row + 1 into row
+            size_t index = row * VGA_WIDTH + col;
+            size_t below = index + VGA_WIDTH;
+            g_term_buffer[index] = g_term_buffer[below];
+        }
+    }
+
+    // Fill last row with spaces
+    for (size_t col = 0; col < VGA_WIDTH; ++col)
+        term_set(' ', VGA_HEIGHT - 1, col, g_term_color);
+}
+
+void term_set(unsigned char c, size_t row, size_t col, uint8_t color)
+{
     g_term_buffer[row * VGA_WIDTH + col] = vga_entry(c, color);
 }
 
-void term_color(uint8_t color) {
+void term_color(uint8_t color)
+{
     g_term_color = color;
 }
 

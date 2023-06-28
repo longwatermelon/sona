@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-typedef enum {
+typedef enum
+{
     VGA_COLOR_BLACK = 0,
     VGA_COLOR_BLUE = 1,
     VGA_COLOR_GREEN = 2,
@@ -22,11 +23,13 @@ typedef enum {
     VGA_COLOR_WHITE = 15
 } VgaColor;
 
-static inline uint8_t vga_color(VgaColor fg, VgaColor bg) {
+static inline uint8_t vga_color(VgaColor fg, VgaColor bg)
+{
     return fg | bg << 4;
 }
 
-static inline uint16_t vga_entry(unsigned char c, uint8_t color) {
+static inline uint16_t vga_entry(unsigned char c, uint8_t color)
+{
     return (uint16_t)c | (uint16_t)color << 8;
 }
 
