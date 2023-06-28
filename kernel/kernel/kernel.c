@@ -3,6 +3,6 @@
 
 void kernel_main() {
     term_init();
-    printf("test");
+    printf("hoo haw");
 }
 

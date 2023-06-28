@@ -27,7 +27,8 @@ LDFLAGS:=$(LDFLAGS) $(KERNEL_ARCH_LDFLAGS)
 
 KERNEL_OBJS=\
 $(KERNEL_ARCH_OBJS) \
-kernel/kernel.o
+kernel/kernel.o \
+kernel/tty.o
 
 OBJS=\
 $(ARCHDIR)/crti.o \

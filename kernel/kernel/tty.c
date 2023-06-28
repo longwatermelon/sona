@@ -1,5 +1,5 @@
-#include "vga.h"
 #include <kernel/tty.h>
+#include <kernel/vga.h>
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
