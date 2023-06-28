@@ -1,9 +1,14 @@
 # Declare constants for multiboot header
-.set ALIGN, 1<<0 # Loaded modules should be aligned on page boundaries
-.set MEMINFO, 1<<1 # Should provide memory map
-.set FLAGS, ALIGN | MEMINFO # Multiboot uses this flags variable
-.set MAGIC, 0x1BADB002 # Magic number allows bootloader to find header
-.set CHECKSUM, -(MAGIC + FLAGS) # Prove that we are inside multiboot
+# Loaded modules should be aligned on page boundaries
+.set ALIGN, 1<<0
+# Should provide memory map
+.set MEMINFO, 1<<1
+# Multiboot uses this flags variable
+.set FLAGS, ALIGN | MEMINFO
+# Magic number allows bootloader to find header
+.set MAGIC, 0x1BADB002
+# Bootloader will use this CHECKSUM variable to verify that it is in multiboot
+.set CHECKSUM, -(MAGIC + FLAGS)
 
 # Declare header as in multiboot standard
 .section .multiboot
