@@ -1,12 +1,12 @@
 # Defaults
-CC?=i386-elf-gcc
+CC=i686-elf-gcc
 CFLAGS?=-O2 -g
 CPPFLAGS?=
 LDFLAGS?=
 
 # Required
 CFLAGS:=$(CFLAGS) -ffreestanding -Wall -Wextra
-CPPFLAGS:=$(CPPFLAGS) -D__is_libc -Iinclude
+CPPFLAGS:=$(CPPFLAGS) -D__is_libc -Iinclude -I../kernel/include
 LIBK_CFLAGS:=$(CFLAGS)
 LIBK_CPPFLAGS:=$(CPPFLAGS) -D__is_libk
 
@@ -50,18 +50,21 @@ BINS=libk.a
 
 all: $(BINS)
 
+# library from .o
 libc.a: $(OBJS)
-	$(AR) rcs $@ $<
+	$(AR) rcs $@ $(OBJS)
 
 libk.a: $(LIBK_OBJS)
-	$(AR) rcs $@ $<
+	$(AR) rcs $@ $(LIBK_OBJS)
 
+# libc compiled files
 .c.o:
 	$(CC) -MD -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
 
 .c.s:
 	$(CC) -MD -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
+# libk compiled files
 .c.libk.o:
 	$(CC) -MD -c $< -o $@ -std=gnu11 $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
 
@@ -69,9 +72,9 @@ libk.a: $(LIBK_OBJS)
 	$(CC) -MD -c $< -o $@ $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
 
 clean:
-	rm $(BINS) *.a
-	rm $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o
-	rm $(OBJS:.o=.d) $(LIBK_OBJS:.o=.d) *.d */*.d */*/*.d
+	rm -f *.a
+	rm -f $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o
+	rm -f $(OBJS:.o=.d) $(LIBK_OBJS:.o=.d) *.d */*.d */*/*.d
 
 install: install-headers install-libs
 

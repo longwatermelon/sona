@@ -2,3 +2,7 @@
 *.o
 *.d
 compile_commands.json
+.cache
+iso/
+sysroot/
+*.iso
