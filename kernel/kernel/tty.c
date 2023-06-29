@@ -14,10 +14,12 @@ static uint16_t *const VGA_MEMORY = (uint16_t*) 0xB8000;
 static size_t g_term_row;
 static size_t g_term_col;
 static uint8_t g_term_color;
-static uint16_t* g_term_buffer;
+static uint16_t *g_term_buffer;
 
-void term_set(unsigned char c, size_t row, size_t col, uint8_t color);
-void term_scroll();
+static void term_set(unsigned char c, size_t row, size_t col, uint8_t color);
+static void term_scroll();
+// Handles scrolling automatically
+static void term_next_line();
 
 void term_init()
 {
@@ -41,25 +43,18 @@ void term_write(const char *data)
         // Write to screen, or handle newline
         if (data[i] == '\n')
         {
-            ++g_term_row;
-            g_term_col = 0;
+            term_next_line();
         }
         else
         {
             term_set(data[i], g_term_row, g_term_col++, g_term_color);
-        }
-
-        // Scroll if needed
-        if (g_term_row >= VGA_HEIGHT)
-        {
-            term_scroll();
-            g_term_row = VGA_HEIGHT - 1;
-            g_term_col = 0;
+            if (g_term_col >= VGA_WIDTH)
+                term_next_line();
         }
     }
 }
 
-void term_scroll()
+static void term_scroll()
 {
     // Take (row + 1)'s contents and put it in row
     for (size_t row = 0; row < VGA_HEIGHT; ++row)
@@ -78,7 +73,7 @@ void term_scroll()
         term_set(' ', VGA_HEIGHT - 1, col, g_term_color);
 }
 
-void term_set(unsigned char c, size_t row, size_t col, uint8_t color)
+static void term_set(unsigned char c, size_t row, size_t col, uint8_t color)
 {
     g_term_buffer[row * VGA_WIDTH + col] = vga_entry(c, color);
 }
@@ -86,5 +81,18 @@ void term_set(unsigned char c, size_t row, size_t col, uint8_t color)
 void term_color(uint8_t color)
 {
     g_term_color = color;
+}
+
+static void term_next_line()
+{
+    ++g_term_row;
+    g_term_col = 0;
+
+    if (g_term_row >= VGA_HEIGHT)
+    {
+        term_scroll();
+        g_term_row = VGA_HEIGHT - 1;
+        g_term_col = 0;
+    }
 }
 
